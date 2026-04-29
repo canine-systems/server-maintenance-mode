@@ -63,8 +63,10 @@ public class ServerMaintenanceMode {
         if (!isOp) {
             PlayerList playerList = server.getPlayerList();
             for (ServerPlayer serverPlayer : Lists.newArrayList(playerList.getPlayers())) {
-                Component reason = Component.translatable("server_maintenance_mode.kick_message");
-                serverPlayer.connection.disconnect(reason);
+                if (serverPlayer.getGameProfile().equals(profile)) {
+                    Component reason = Component.translatable("server_maintenance_mode.kick_message");
+                    serverPlayer.connection.disconnect(reason);
+                }
             }
         }
     }
