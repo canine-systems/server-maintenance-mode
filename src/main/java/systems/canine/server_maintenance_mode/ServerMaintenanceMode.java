@@ -16,6 +16,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent;
+import systems.canine.server_maintenance_mode.command.MaintenanceCommand;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(value = ServerMaintenanceMode.MODID)
@@ -33,6 +34,8 @@ public class ServerMaintenanceMode {
 
         // Register ourselves for server and other game events we are interested in.
         NeoForge.EVENT_BUS.register(this);
+
+        MaintenanceCommand.init(modEventBus);
     }
 
     public static void enable() {
