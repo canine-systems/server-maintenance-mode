@@ -27,13 +27,10 @@ public class ServerMaintenanceMode {
     private static Boolean enabled = false;
 
     public ServerMaintenanceMode(IEventBus modEventBus, ModContainer modContainer) {
-        if (FMLEnvironment.dist == Dist.CLIENT) {
-            // Nothing to do -- we're running on a client.
-            return;
+        if (FMLEnvironment.dist == Dist.DEDICATED_SERVER) {
+            // Register ourselves for server and other game events we are interested in.
+            NeoForge.EVENT_BUS.register(this);
         }
-
-        // Register ourselves for server and other game events we are interested in.
-        NeoForge.EVENT_BUS.register(this);
 
         MaintenanceCommand.init(modEventBus);
     }

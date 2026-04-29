@@ -11,7 +11,9 @@ import net.minecraft.commands.synchronization.ArgumentTypeInfos;
 import net.minecraft.commands.synchronization.SingletonArgumentInfo;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -49,6 +51,10 @@ public class MaintenanceCommand {
     }
 
     private static int handleSubcommand(CommandSourceStack source, boolean needs_update, MaintenanceSubcommand cmd) {
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            return 0;
+        }
+
         switch (cmd) {
         case MaintenanceSubcommand.ON:
             ServerMaintenanceMode.enable();
