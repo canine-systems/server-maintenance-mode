@@ -134,18 +134,6 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    // We need slf4j 2.0.9, and thus jakarta ee10 libraries, because Minecraft 1.21.1 doesn't like slf4j 2.0.17+. :(
-
-    jarJar(implementation "tools.jackson.core:jackson-databind:3.1.0")
-    additionalRuntimeClasspath "tools.jackson.core:jackson-databind:3.1.0"
-
-    // Needed by jackson-databind
-    jarJar(implementation "tools.jackson.core:jackson-core:3.1.0")
-    additionalRuntimeClasspath "tools.jackson.core:jackson-core:3.1.0"
-
-    // Needed by jackson-databind
-    jarJar(implementation "com.fasterxml.jackson.core:jackson-annotations:2.21")
-    additionalRuntimeClasspath "com.fasterxml.jackson.core:jackson-annotations:2.21"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
